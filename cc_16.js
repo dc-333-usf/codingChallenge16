@@ -25,6 +25,7 @@ function fetchProductsThen() { //now create a function to get the products and l
         .then (data => { //once the promise is successfully resolved, for the parsed JSON data
             data.forEach (n => { //each instance of the array of products from the API
                 const div = document.createElement('div'); //create a div element
+                div.setAttribute("id", "names-list");
                 div.innerHTML = `<h3>${n.fields.name}</h3>`; //take the name from fields in the API
                 container.appendChild(div); //and append that to the container
             });
@@ -50,7 +51,8 @@ async function displayProducts(products) { //create an asynchronous function to 
 
     products.forEach(product => { //for each of the products in the array
         const div = document.createElement('div'); //create a new div element
-        div.innerHTML = `<h3>${product.fields.name}</h3><p>${product.fields.price}</p><img src="${product.fields.image[0].url}">`; //set the inner HTML of the div element to include the name, price, and image of the product
+        div.setAttribute("id", "item-card");
+        div.innerHTML = `<h3 id="prod-name">${product.fields.name}</h3><p id="prod-price">$${product.fields.price}</p><img src="${product.fields.image[0].url}" id="prod-image"><br><br><br><br><br>`; //set the inner HTML of the div element to include the name, price, and image of the product
         prodContainer.appendChild(div); //append the div item to the container
     });
 }
