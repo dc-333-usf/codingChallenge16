@@ -1,6 +1,7 @@
 //Task 1: Set Up the Project Structure.
 
-//Task 2: Fetch Products with .then()
+
+//Task 2: Fetch Products with .then().
 const API_URL = 'https://www.course-api.com/javascript-store-products'; //create a constant for the API URL so it can be accessed easier
 
 function fetchApi() { //create a function to fetch the API
@@ -41,7 +42,8 @@ function handleError(error) { //create a function to handle errors, taking "erro
     throw error; //throw the error to stop execution
 }
 
-//Task 4: Display the Products
+
+//Task 4: Display the Products.
 //now we do the task 4 function since it's required for the task 3 function
 async function displayProducts(products) { //create an asynchronous function to display products
     const prodContainer = document.querySelector('#product-container'); //target the product container in the html document
@@ -54,18 +56,22 @@ async function displayProducts(products) { //create an asynchronous function to 
 }
 
 
-// Task 3: Fetch Products with fetchProductAsync()
-async function fetchProductsAsync() {
-    try {
-        const wait = await fetch(API_URL);
+// Task 3: Fetch Products with fetchProductAsync().
+async function fetchProductsAsync() { //create an async function
+    try { //use try and execute the following
+        const wait = await fetch(API_URL); //create a constant for awaiting the API to be fetched
 
-        if (!wait.ok) {
-            handleError(wait.status);
+        if (!wait.ok) { //if the status of the resolution of the promise returns as not okay
+            handleError(wait.status); //use the handleError function and use the status of wait as the error
         }
 
-        const products = await wait.json();
-        displayProducts(products);
-    } catch (err) {
-        handleError(err.message);
+        const products = await wait.json(); //if the status returns as ok
+        displayProducts(products); //use the displayProducts function on the API.json()
+    } catch (err) { //if there are any other errors
+        handleError(err.message); //use the handleError function with the err associated with message
     }
 }
+
+//Task 6: Call Your Fetch Functions.
+fetchProductsThen();
+fetchProductsAsync(); //test
