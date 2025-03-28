@@ -33,4 +33,9 @@ function fetchProductsThen() { //now create a function to get the products and l
         });
 }
 
-fetchProductsThen();
+
+//Task 5: Reusable Error Handler.
+function handleError(error) { //create a function to handle errors, taking "error" as the argument
+    console.error(`An error occurred: ${error.message}`); //when this function is executed, console log the error, including the error message
+    throw error; //throw the error to stop execution
+}
