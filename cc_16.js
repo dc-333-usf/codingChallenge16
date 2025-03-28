@@ -35,7 +35,20 @@ function fetchProductsThen() { //now create a function to get the products and l
 
 
 //Task 5: Reusable Error Handler.
+//we do this function first since we'll need it for our later functions
 function handleError(error) { //create a function to handle errors, taking "error" as the argument
     console.error(`An error occurred: ${error.message}`); //when this function is executed, console log the error, including the error message
     throw error; //throw the error to stop execution
+}
+
+//Task 4: Display the Products
+//now we do the task 4 function since it's required for the task 3 function
+async function displayProducts(products) { //create an asynchronous function to display products
+    const prodContainer = document.querySelector('#product-container'); //target the product container in the html document
+
+    products.forEach(product => { //for each of the products in the array
+        const div = document.createElement('div'); //create a new div element
+        div.innerHTML = `<h3>${product.fields.name}</h3><p>${product.fields.price}</p><img src="${product.fields.image[0].url}">`; //set the inner HTML of the div element to include the name, price, and image of the product
+        prodContainer.appendChild(div); //append the div item to the container
+    });
 }
