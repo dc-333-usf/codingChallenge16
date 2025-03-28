@@ -52,3 +52,20 @@ async function displayProducts(products) { //create an asynchronous function to 
         prodContainer.appendChild(div); //append the div item to the container
     });
 }
+
+
+// Task 3: Fetch Products with fetchProductAsync()
+async function fetchProductsAsync() {
+    try {
+        const wait = await fetch(API_URL);
+
+        if (!wait.ok) {
+            handleError(wait.status);
+        }
+
+        const products = await wait.json();
+        displayProducts(products);
+    } catch (err) {
+        handleError(err.message);
+    }
+}
